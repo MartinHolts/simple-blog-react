@@ -26,7 +26,7 @@ To run this application, ensure you have the following installed:
 
 ## 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/simple-blog-react.git
+git clone https://github.com/MartinHolts/trial-simple-blog-laravel-react
 cd simple-blog-react
 ```
 
