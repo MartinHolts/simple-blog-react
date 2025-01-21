@@ -16,7 +16,9 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'posts' => $posts, // Pass posts to the frontend
     ]);
-});
+})->name('welcome');
+
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 // Dashboard route
 Route::get('/dashboard', function () {

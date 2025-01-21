@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -15,6 +16,10 @@ class PostController extends Controller
         return $posts->toArray();
     }
     
-    
-    
+    public function show(Post $post)
+    {
+        return Inertia::render('PostShow', [
+            'post' => $post,
+        ]);
+    }
 }
