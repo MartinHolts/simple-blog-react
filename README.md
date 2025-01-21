@@ -24,29 +24,29 @@ To run this application, ensure you have the following installed:
 
 ## Installation
 
+## 1. Clone the Repository
 ```bash
-git clone [https://github.com/your-username/simple-blog-react.git](https://github.com/your-username/simple-blog-react.git)
+git clone https://github.com/your-username/simple-blog-react.git
 cd simple-blog-react
 ```
 
-# Install PHP dependencies
+## 2. Install Dependencies
+Run the following command to install PHP dependencies:
 ```bash
 composer install
 ```
-
-# Install JavaScript dependencies
+Then, install JavaScript dependencies:
 ```bash
 npm install
 ```
 
-# Run the Development Server
-
-# Start the backend server
+## 3. Run the Development Server
+Start the backend server:
 ```bash
 php artisan serve
 ```
 
-# Start the frontend development server
+Start the frontend development server:
 ```bash
 npm run dev
 ```
