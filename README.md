@@ -41,6 +41,12 @@ npm install
 ```
 
 ## 3. Run the Development Server
+
+Start the frontend and backend server:
+```bash
+composer run dev
+```
+
 Start the backend server:
 ```bash
 php artisan serve
