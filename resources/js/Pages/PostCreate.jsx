@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "@inertiajs/react";
+import { useForm, Link } from "@inertiajs/react";
 
 export default function PostCreate() {
     const { data, setData, post, errors } = useForm({
@@ -62,14 +62,20 @@ export default function PostCreate() {
                             )}
                         </div>
 
-                        {/* Submit Button */}
-                        <div>
+                        {/* Action Buttons */}
+                        <div className="flex items-center space-x-4">
                             <button
                                 type="submit"
                                 className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-700"
                             >
                                 Create Post
                             </button>
+                            <Link
+                                href={route("welcome")}
+                                className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-700"
+                            >
+                                Back to Posts
+                            </Link>
                         </div>
                     </form>
                 </div>

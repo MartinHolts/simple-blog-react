@@ -12,7 +12,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
-        'user_id', // Include user_id for associating posts with users
+        'user_id',
     ];
 
     /**

@@ -15,8 +15,8 @@ export default function PostShow({ post }) {
                 </div>
                 <div className="mt-6">
                     <Link
-                        href={route("welcome")} // Change this to your home route
-                        className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                        href={route("welcome")}
+                        className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-700"
                     >
                         Back to Posts
                     </Link>

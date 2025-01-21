@@ -193,7 +193,6 @@ export default function Welcome({ auth, posts }) {
                         )}
                     </main>
 
-                    {/* Footer */}
                     <footer className="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
                         Made by Martin Holtsmeier
                     </footer>

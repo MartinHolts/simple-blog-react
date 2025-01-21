@@ -10,8 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        // Fetch posts (example query)
-        $posts = Post::all(); // Or any query that returns a collection
+        // Fetch posts
+        $posts = Post::all();
     
         // Convert to an array
         return $posts->toArray();
