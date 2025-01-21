@@ -40,7 +40,7 @@ export default function Welcome({ auth, posts }) {
             <Head title="Welcome" />
             <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
                 <div className="container mx-auto px-6 py-10">
-                    {/* Header */}
+                    
                     <header className="flex items-center justify-between pb-10 border-b border-gray-300 dark:border-gray-700">
                         <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
                             Welcome to the Blog
@@ -80,7 +80,6 @@ export default function Welcome({ auth, posts }) {
                         </nav>
                     </header>
 
-                    {/* Main Content */}
                     <main className="mt-10">
                         {posts.length > 0 ? (
                             <div className="grid gap-6 md:grid-cols-2">

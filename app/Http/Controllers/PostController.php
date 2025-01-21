@@ -72,6 +72,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('dashboard')->with('message', 'Post deleted successfully.');
+        return redirect()->route('welcome')->with('message', 'Post deleted successfully.');
     }
 }
