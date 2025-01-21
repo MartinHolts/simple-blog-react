@@ -7,9 +7,9 @@ This is a simple blog application built as part of a job competition technical a
 ## Features:
 
 * User Authentication: User registration and login system.
-* Blog Posts: view posts.
+* Blog Posts: Create and view posts.
 * Database: Relational database using SQLite.
-* Validation: Input validation for registration, login.
+* Validation: Input validation for registration, login, and post creation.
 * Security: Password hashing and SQL injection prevention.
 * Styling: Tailwind CSS for a clean and presentable design.
 
