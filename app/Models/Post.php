@@ -7,11 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory; // Add this trait to enable factory usage
+    use HasFactory;
 
     protected $fillable = [
         'title',
         'content',
-        'user_id', // Include user_id if you're associating posts with users
+        'user_id', // Include user_id for associating posts with users
     ];
+
+    /**
+     * Get the user who owns the post.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
