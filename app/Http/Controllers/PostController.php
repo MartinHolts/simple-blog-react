@@ -41,6 +41,26 @@ class PostController extends Controller
         return redirect()->route('welcome')->with('success', 'Post created successfully!');
     }
 
+    public function update(Request $request, Post $post)
+    {
+        // Ensure the user is authorized to update the post
+        if ($request->user()->id !== $post->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+    
+        // Validate the request data
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+    
+        // Update the post
+        $post->update($validated);
+    
+        // Redirect back to the welcome page with a success message
+        return redirect()->route('welcome')->with('success', 'Post updated successfully!');
+    }    
+
     public function destroy($id)
     {
         $post = Post::findOrFail($id);

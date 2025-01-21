@@ -2,7 +2,30 @@ import { useState } from "react";
 import { Head, Link, router } from "@inertiajs/react";
 
 export default function Welcome({ auth, posts }) {
-    const [selectedPost, setSelectedPost] = useState(null);
+    const [editingPost, setEditingPost] = useState(null);
+    const [formData, setFormData] = useState({ title: "", content: "" });
+    const [errors, setErrors] = useState({});
+
+    const handleEditClick = (post) => {
+        setEditingPost(post.id);
+        setFormData({ title: post.title, content: post.content });
+    };
+
+    const handleEditSubmit = (e) => {
+        e.preventDefault();
+    
+        router.put(
+            route("posts.update", { post: editingPost }),
+            formData,
+            {
+                onSuccess: () => {
+                    alert("Post updated successfully!");
+                    setEditingPost(null);
+                },
+                onError: (errorBag) => setErrors(errorBag),
+            }
+        );
+    };    
 
     const handleDelete = (postId) => {
         if (confirm("Are you sure you want to delete this post?")) {
@@ -16,7 +39,6 @@ export default function Welcome({ auth, posts }) {
         <>
             <Head title="Welcome" />
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-                {/* Header and Navigation */}
                 <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                         <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
@@ -69,29 +91,92 @@ export default function Welcome({ auth, posts }) {
                                                     padding: "10px",
                                                 }}
                                             >
-                                                <h2>{post.title}</h2>
-                                                <p>{post.content}</p>
-                                                <small>
-                                                    Posted by User {post.user_id}
-                                                </small>
-                                                <div className="mt-2">
-                                                    {auth.user?.id === post.user_id && (
+                                                {editingPost === post.id ? (
+                                                    <form onSubmit={handleEditSubmit}>
+                                                        <input
+                                                            type="text"
+                                                            value={formData.title}
+                                                            onChange={(e) =>
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    title: e.target.value,
+                                                                })
+                                                            }
+                                                            className="w-full mb-2 border px-2 py-1"
+                                                        />
+                                                        {errors.title && (
+                                                            <p className="text-red-500 text-sm">
+                                                                {errors.title}
+                                                            </p>
+                                                        )}
+                                                        <textarea
+                                                            value={formData.content}
+                                                            onChange={(e) =>
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    content: e.target.value,
+                                                                })
+                                                            }
+                                                            className="w-full mb-2 border px-2 py-1"
+                                                        ></textarea>
+                                                        {errors.content && (
+                                                            <p className="text-red-500 text-sm">
+                                                                {errors.content}
+                                                            </p>
+                                                        )}
                                                         <button
-                                                            onClick={() => handleDelete(post.id)}
-                                                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                                                            type="submit"
+                                                            className="bg-green-500 text-white px-4 py-2 rounded mr-2"
                                                         >
-                                                            Delete
+                                                            Save
                                                         </button>
-                                                    )}
-                                                    <Link
-                                                        href={route("posts.show", {
-                                                            post: post.id,
-                                                        })}
-                                                        className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-                                                    >
-                                                        View Details
-                                                    </Link>
-                                                </div>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setEditingPost(null)}
+                                                            className="bg-gray-500 text-white px-4 py-2 rounded"
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </form>
+                                                ) : (
+                                                    <>
+                                                        <h2>{post.title}</h2>
+                                                        <p>{post.content}</p>
+                                                        <small>
+                                                            Posted by User {post.user_id}
+                                                        </small>
+                                                        <div className="mt-2">
+                                                            {auth.user?.id === post.user_id && (
+                                                                <>
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            handleEditClick(post)
+                                                                        }
+                                                                        className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700 mr-2"
+                                                                    >
+                                                                        Edit
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            handleDelete(post.id)
+                                                                        }
+                                                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                                                                    >
+                                                                        Delete
+                                                                    </button>
+                                                                </>
+                                                            )}
+                                                            <Link
+                                                                href={route("posts.show", {
+                                                                    post: post.id,
+                                                                })}
+                                                                className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                                            >
+                                                                View Details
+                                                            </Link>
+                                                        </div>
+                                                    </>
+                                                )}
                                             </div>
                                         ))}
                                     </div>
