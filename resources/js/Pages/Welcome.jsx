@@ -49,16 +49,16 @@ export default function Welcome({ auth, posts }) {
                             {auth.user ? (
                                 <div className="flex space-x-4">
                                     <Link
-                                        href={route("dashboard")}
-                                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                    <Link
                                         href={route("post.create")}
                                         className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
                                     >
                                         Create New Post
+                                    </Link>
+                                    <Link
+                                        href={route("dashboard")}
+                                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+                                    >
+                                        Dashboard
                                     </Link>
                                 </div>
                             ) : (
