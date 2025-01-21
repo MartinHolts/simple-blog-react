@@ -40,4 +40,18 @@ class PostController extends Controller
 
         return redirect()->route('welcome')->with('success', 'Post created successfully!');
     }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+
+        // Check if the authenticated user is the creator
+        if ($post->user_id !== auth()->id()) {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized action.');
+        }
+
+        $post->delete();
+
+        return redirect()->route('dashboard')->with('message', 'Post deleted successfully.');
+    }
 }

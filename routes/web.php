@@ -14,6 +14,7 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        'authUserId' => auth()->id(),
         'posts' => $posts, // Pass posts to the frontend
     ]);
 })->name('welcome');
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
 // Authentication routes
