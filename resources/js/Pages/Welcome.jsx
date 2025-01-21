@@ -149,7 +149,9 @@ export default function Welcome({ auth, posts }) {
                                                     {post.title}
                                                 </h2>
                                                 <p className="mt-2 text-gray-600 dark:text-gray-400">
-                                                    {post.content}
+                                                    {post.content.length > 100
+                                                        ? `${post.content.slice(0, 300)}...`
+                                                        : post.content}
                                                 </p>
                                                 <small className="block mt-2 text-gray-500 dark:text-gray-400">
                                                     Posted by User {post.user_id}
