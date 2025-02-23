@@ -18,6 +18,9 @@ This is a simple blog application built as part of a job competition technical a
 To run this application, ensure you have the following installed:
 
 * PHP 8.0+
+  Make sure in your php.ini file are enabled(commented out):
+  extension=sqlite3
+  extension=pdo_sqlite
 * Composer
 * Node.js (v14+ recommended)
 * SQLite
